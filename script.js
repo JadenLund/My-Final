@@ -16,28 +16,43 @@ function randomNumberAmount() {
     return `${randomButtonNumber}`;
 }
 
+function randomMessageAlert() {
+    let messages = ["Click Me", "No, Click me", "Me first!", "Press me", ":)"]
+    let message = messages[Math.floor(Math.random() * messages.length)];
+    return `${message}`;
+}
+function randomClickMessageAlert() {
+    let messages = ["Choose a different button", "Please click a different button", "Oops! Choose a different button", "Wrong button, click again"]
+    let message = messages[Math.floor(Math.random() * messages.length)];
+    return `${message}`;
+}
+
 function makeButton() {
     var button = document.createElement("button");
-    button.textContent = "Do Something";
+    button.textContent = randomMessageAlert();
 
     var body = document.getElementsByTagName("body")[0];
     body.appendChild(button);
 
     button.addEventListener("click", function () {
-        alert("I love you :>");
+        button.style.display = 'none';
+        if (buttonsRemaining < 1) {
+            alert("Congrats");
+            alert("You clicked all the buttons!")
+            alert("You can stop now")
+            alert("Please dear God stop")
+            alert("I have a wife and kids")
+            return;
+        }
+        alert(randomClickMessageAlert());
+        buttonsRemaining--;
     })
     button.style.backgroundColor = randomColorGenerator();
 }
-
-for (let i = 0; i <= randomNumberAmount(); i++) {
+var numberOfButtons = randomNumberAmount();
+var buttonsRemaining = numberOfButtons;
+for (let i = 0; i <= numberOfButtons; i++) {
     makeButton();
 }
-/*have a randomizer that makes different buttons*/
-//Goals
-/*Add image borders around the h1 text
-Have the h2 ask for the user to click a button 
-all buttons are pictures of my pets faces
-When the wrong one is clicked
-the button states underneath "Wrong button clicked, chose again"
-when the right one is clicked it clears everythgin from the page
-background goes yellow and says congrats*/
+
+//if there is only one button left, have it start to move away
