@@ -1,16 +1,35 @@
-function makeButton(){
-var button = document.createElement("button");
-button.textContent = "Do Something";
+let hexValue = 0xff;
+let maxColorVal = 0xFFFFFF;
 
-var body = document.getElementsByTagName("body")[0];
-body.appendChild(button);
-
-button.addEventListener("click", function () {
-    alert("did something");
-})
+function randomColorGenerator() {
+    let maxVal = 0xFFFFFF;
+    let randomNumber = Math.random() * maxVal; //in decimal form atm
+    randomNumber = Math.floor(randomNumber); //converts to an int
+    randomNumber = randomNumber.toString(16);
+    let randomColor = randomNumber.padStart(6, 0);
+    return `#${randomColor.toUpperCase()}`;
 }
-for(let i = 0; i < 10; i++)
-{
+
+function randomNumberAmount() {
+    let maxValue = 20;
+    let randomButtonNumber = Math.floor(Math.random() * maxValue);
+    return `${randomButtonNumber}`;
+}
+
+function makeButton() {
+    var button = document.createElement("button");
+    button.textContent = "Do Something";
+
+    var body = document.getElementsByTagName("body")[0];
+    body.appendChild(button);
+
+    button.addEventListener("click", function () {
+        alert("I love you :>");
+    })
+    button.style.backgroundColor = randomColorGenerator();
+}
+
+for (let i = 0; i <= randomNumberAmount(); i++) {
     makeButton();
 }
 /*have a randomizer that makes different buttons*/
